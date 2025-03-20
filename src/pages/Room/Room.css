@@ -1,0 +1,279 @@
+/* Home.css */
+
+/* Global Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+/* Navbar Styles */
+nav {
+  background-color: #48bb78; /* Green background */
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+/* Dropdown Styles */
+.filter-select {
+  padding: 0.75rem 1.5rem; /* Comfortable padding */
+  border: 2px solid #ffffff; /* White border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Semi-transparent white background */
+  color: #2d3748; /* Dark gray text color */
+  font-size: 1rem; /* Font size */
+  font-weight: 500; /* Medium font weight */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  appearance: none; /* Remove default arrow in some browsers */
+  -webkit-appearance: none; /* Remove default arrow in Safari */
+  -moz-appearance: none; /* Remove default arrow in Firefox */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232d3748'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: right 1rem center; /* Position the arrow */
+  background-size: 12px; /* Size of the arrow */
+}
+
+.filter-select:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    1
+  ); /* Fully white background on hover */
+  border-color: #e2e8f0; /* Light gray border on hover */
+}
+
+.filter-select:focus {
+  outline: none; /* Remove default outline */
+  border-color: #48bb78; /* Green border on focus */
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2); /* Green glow effect */
+}
+
+/* Search Button Styles */
+.search-button {
+  padding: 0.75rem 1.5rem;
+  background-color: white !important;
+  color: #48bb78;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #f7fafc; /* Light gray background on hover */
+  color: #48bb78;
+  border-color: #48bb78;
+}
+
+.search-button:active {
+  transform: scale(0.95); /* Slight scale-down effect on click */
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .flex.space-x-4 {
+    flex-direction: column; /* Stack filters vertically on smaller screens */
+    align-items: stretch; /* Stretch items to full width */
+  }
+
+  .filter-select {
+    width: 100%; /* Full width on smaller screens */
+    margin-bottom: 0.5rem; /* Space between stacked selects */
+  }
+
+  /* Custom CSS for the Search Button */
+  .search-button {
+    background-color: white; /* White background */
+    color: black; /* Black text color */
+    padding: 0.5rem 1.5rem; /* px-6 py-2 equivalent */
+    border-radius: 0.25rem; /* Rounded corners */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+  }
+
+  .search-button:hover {
+    background-color: #f3f4f6; /* Light gray background on hover (hover:bg-gray-100 equivalent) */
+  }
+}
+
+/* Room Card Styles */
+.bg-white {
+  background-color: white;
+}
+
+.rounded-lg {
+  border-radius: 0.75rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.transform {
+  transform: scale(1);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.p-4 {
+  padding: 1rem !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-green-500 {
+  background-color: #48bb78 ;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.text-gray-600 {
+  color: #718096;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.max-w-7xl {
+  max-width: 100%;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.hover\:bg-green-600:hover {
+  background-color: #38a169 ;
+}

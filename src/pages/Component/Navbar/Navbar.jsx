@@ -1,0 +1,107 @@
+// src/Navbar.jsx
+import React, { useState } from "react";
+import { FaUser, FaTag, FaHistory, FaSignOutAlt, FaBars, FaSun, FaMoon } from "react-icons/fa";
+import { useTheme } from "../../../context/ThemeContext";
+import "./Navbar.css";
+
+const Navbar = () => {
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useTheme(); // Use theme context
+
+  const toggleProfileMenu = () => {
+    setShowProfileMenu(!showProfileMenu);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
+
+  return (
+    <>
+      {/* Navbar */}
+      <nav className={`navbar navbar-expand-lg ${isDarkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'}`} id="nav">
+        <div className="container d-flex align-items-center">
+          <a href="#" className="navbar-brand d-flex align-items-center">
+            <img
+              src="/src/assets/images/logo/Hotel_logo.webp" // Adjusted path for Vite
+              alt="home-logo"
+              className="logo"
+            />
+          </a>
+
+          {/* Hamburger Menu Button for Mobile */}
+          <button className="hamburger" onClick={toggleMobileMenu}>
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </button>
+
+          {/* Navigation Links */}
+          <div className={`navbar-nav ms-3 ${showMobileMenu ? 'show' : ''}`}>
+            <a href="/" className="nav-item nav-link active">
+              Home
+            </a>
+            <a href="/about" className="nav-item nav-link">
+              About Us
+            </a>
+            <a href="/room" className="nav-item nav-link">
+              Rooms
+            </a>
+            <a href="/contact" className="nav-item nav-link">
+              Contact
+            </a>
+            {/* <a href="/help" className="nav-item nav-link">
+              Help
+            </a> */}
+          </div>
+
+          <div className="navbar-nav ms-auto left-link d-flex align-items-center">
+            <a href="/book1" className="nav-link book" id="bk">
+              📅 Book Now
+            </a>
+            <a href="/cancel-booking" className="nav-link cancel" id="cncl">
+              ❌ Cancel Booking
+            </a>
+            {/* Dark/Light Mode Toggle Button */}
+            <button 
+              className="nav-link btn btn-outline-secondary mx-2" 
+              id="mode-toggle"
+              onClick={toggleDarkMode}
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <FaSun /> : <FaMoon />}
+            </button>
+            {/* Profile Section */}
+            <div className="profile-container">
+              <img
+                src="/src/assets/images/logo/logo.webp" // Adjusted path for Vite
+                alt="user-profile"
+                className="profile-logo"
+                onClick={toggleProfileMenu}
+              />
+              {showProfileMenu && (
+                <div className="profile-dropdown">
+                  <div className="profile-item">
+                    <FaUser /> Name: John Doe
+                  </div>
+                  <div className="profile-item">
+                    <FaTag /> Username: johndoe123
+                  </div>
+                  <a href="/history" className="profile-item profile-link">
+                    <FaHistory /> History
+                  </a>
+                  <a href="#" className="profile-item profile-link logout">
+                    <FaSignOutAlt /> Logout
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+};
+
+export default Navbar;
