@@ -1,328 +1,468 @@
-/* Room Booking Container */
-.Book_room-booking-container {
-  width: 100%;
+/* General Reset and Base Styles */
+* {
   margin: 0;
-  padding: 20px;
-  background-color: #1a1a1a;
-  color: #fff;
-  font-family: "Arial", sans-serif;
-  min-height: 100vh;
+  padding: 0;
   box-sizing: border-box;
 }
 
-/* Heading */
-.Book_room-booking-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 2rem;
-  letter-spacing: 1px;
+.Book_room-booking-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
-/* Sections */
+/* Light Mode Styles */
+.Book_room-booking-container {
+  background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] .Book_room-booking-container {
+  background: linear-gradient(135deg, #1e272e, #2f3640);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+[data-theme="dark"] h2 {
+  color: #dfe6e9;
+}
+
 .Book_room-booking-container section {
   margin-bottom: 30px;
   padding: 20px;
-  background-color: #222;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.9);
 }
 
-/* Subheadings */
-.Book_room-booking-container h3 {
-  margin-bottom: 15px;
-  color: #bbb;
+[data-theme="dark"] section {
+  background: rgba(44, 62, 80, 0.9);
+}
+
+h3 {
   font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #2980b9;
 }
 
-/* Form Rows */
+[data-theme="dark"] h3 {
+  color: #74b9ff;
+}
+
+/* Form Row and Group */
 .Book_form-row {
   display: flex;
-  gap: 20px;
-  margin-bottom: 15px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 25px; /* Increased gap for better spacing */
+  align-items: flex-start; /* Align items to the top */
 }
 
-/* Form Groups */
+/* Updated Form Group for better alignment */
 .Book_form-group {
   flex: 1;
-  min-width: 0;
+  min-width: 250px;
+  position: relative; /* For positioning required indicator */
 }
 
+/* Ensure full-width groups take the entire row */
 .Book_form-group.full-width {
   flex: 100%;
 }
 
-.Book_form-group label {
+/* Updated Labels and Inputs */
+label {
   display: block;
-  margin-bottom: 5px;
-  color: #bbb;
-  font-weight: 500;
+  /* margin-bottom: 8px;  */
+  font-weight: 600; /* Bolder labels */
+  font-size: 1.1rem; /* Slightly larger labels */
+  color: #34495e;
+  position: relative;
 }
 
-.Book_form-group input,
-.Book_form-group select {
+/* Add a red asterisk for required fields */
+label[for="firstName"]::after,
+label[for="lastName"]::after,
+label[for="identityNumber"]::after {
+  content: "*";
+  color: #e74c3c;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
+
+[data-theme="dark"] label {
+  color: #b2bec3;
+}
+
+[data-theme="dark"] label[for="firstName"]::after,
+[data-theme="dark"] label[for="lastName"]::after,
+[data-theme="dark"] label[for="identityNumber"]::after {
+  color: #ff7675;
+}
+
+input,
+select {
   width: 100%;
-  padding: 10px;
-  background-color: #333;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: #fff;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  padding: 12px 15px; /* Increased padding for better touch targets */
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Softer rounded corners */
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
-.Book_form-group input:focus,
-.Book_form-group select:focus {
-  border-color: #007bff;
+/* Placeholder styling */
+input::placeholder,
+select:invalid {
+  color: #95a5a6;
+  font-style: italic;
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] select:invalid {
+  color: #b2bec3;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+  border: 1px solid #576574;
+  background: #2d3436;
+  color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:focus,
+select:focus {
   outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3); /* Softer focus shadow */
+  background: #f8f9fa; /* Slight background change on focus */
 }
 
-/* Specific Input Types */
-.Book_form-group input[type="date"] {
-  color: #bbb;
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus {
+  border-color: #74b9ff;
+  box-shadow: 0 0 8px rgba(116, 185, 255, 0.3);
+  background: #3b4144;
 }
 
-.Book_form-group input[type="number"] {
-  width: 100px;
+/* Style for select dropdown arrow */
+select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
 }
 
-.Book_form-group input[name="cardNumber"],
-.Book_form-group input[name="expiryDate"],
-.Book_form-group input[name="cvv"] {
-  width: 100%;
+[data-theme="dark"] select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
 }
 
-.Book_form-group input[name="cvv"] {
-  width: 80px;
-}
-
-/* Buttons */
-.Book_submit-button,
-.Book_cancel-button,
-.Book_payment-button {
-  padding: 12px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 10px;
-  font-size: 1em;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.Book_submit-button {
-  background-color: #007bff;
-  color: white;
-}
-
-.Book_submit-button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-}
-
-.Book_cancel-button {
-  background-color: #f44336;
-  color: white;
-}
-
-.Book_cancel-button:hover {
-  background-color: #d32f2f;
-  transform: translateY(-2px);
-}
-
-.Book_payment-button {
-  background-color: #28a745;
-  color: white;
-}
-
-.Book_payment-button:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-}
-
-/* Required Field Asterisk */
-.Book_form-group label[for="checkIn"]::after,
-.Book_form-group label[for="checkOut"]::after,
-.Book_form-group label[for="roomType"]::after,
-.Book_form-group label[for="roomNo"]::after,
-.Book_form-group label[for="firstName"]::after,
-.Book_form-group label[for="identityNumber"]::after {
-  content: " *";
-  color: #ff4444;
-  display: inline;
-}
-
-/* Placeholder Style */
-.Book_form-group input::placeholder,
-.Book_form-group select:invalid {
-  color: #666;
-}
-
-/* Hide Default Arrows for Number Inputs */
-.Book_form-group input[type="number"]::-webkit-inner-spin-button,
-.Book_form-group input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.Book_form-group input[type="number"] {
-  -moz-appearance: textfield;
-}
-
-/* Form Buttons Container */
-.Book_form-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 25px;
-  justify-content: center;
-}
-
-.Book_form-buttons .Book_submit-button,
-.Book_form-buttons .Book_cancel-button {
-  flex: 1;
-  max-width: 200px;
-}
-
-/* Cash Info */
-.Book_cash-info {
-  background-color: #2a2a2a;
-  padding: 15px;
-  border-radius: 5px;
-  margin-top: 10px;
-  color: #fff;
-}
-
-.Book_cash-info h4 {
-  margin: 0 0 10px 0;
-  color: #bbb;
-}
-
-.Book_cash-info p {
-  margin: 5px 0;
-  color: #999;
-}
-
-.Book_cash-info strong {
-  color: #fff;
-}
-
-/* Amount Details */
-.Book_amount-details {
-  background-color: #333;
-  padding: 15px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  color: #fff;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.Book_amount-details p {
-  margin: 8px 0;
-  color: #bbb;
-}
-
-.Book_amount-details hr {
-  border: 0;
-  border-top: 1px solid #444;
-  margin: 12px 0;
-}
-
-.Book_amount-details p strong {
-  color: #fff;
-}
-
-/* Counter Styling */
+/* Counter Styles */
 .Book_counter {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.Book_counter input {
-  width: 60px;
-  padding: 8px;
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 4px;
-  text-align: center;
-  font-size: 1rem;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-.Book_counter input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-.Book_counter input:read-only {
-  background-color: #333;
-  cursor: default;
-}
-
-/* Counter Buttons */
 .Book_counter-button {
-  padding: 8px 12px;
-  background-color: #333;
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  background: #3498db;
   color: #fff;
-  border: 1px solid #444;
-  border-radius: 4px;
-  font-size: 1em;
-  font-weight: 600;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  width: 40px;
-  text-align: center;
-}
-
-.Book_counter-button:hover:not(:disabled) {
-  background-color: #444;
-  border-color: #555;
+  transition: background 0.3s ease;
 }
 
 .Book_counter-button:disabled {
-  background-color: #2a2a2a;
-  color: #666;
-  border-color: #333;
+  background: #bdc3c7;
   cursor: not-allowed;
+}
+
+[data-theme="dark"] .Book_counter-button {
+  background: #0984e3;
+}
+
+[data-theme="dark"] .Book_counter-button:disabled {
+  background: #636e72;
+}
+
+.Book_counter-button:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+[data-theme="dark"] .Book_counter-button:hover:not(:disabled) {
+  background: #74b9ff;
+}
+
+.Book_counter input {
+  width: 100px;
+  text-align: center;
+}
+
+/* Updated Service Category and Items */
+.Book_service-category {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 0.5);
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .Book_service-category {
+  background: rgba(45, 52, 54, 0.5);
+}
+
+.Book_service-category h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e67e22;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #e67e22;
+  padding-bottom: 5px;
+}
+
+[data-theme="dark"] .Book_service-category h4 {
+  color: #fdcb6e;
+  border-bottom: 2px solid #fdcb6e;
+}
+
+.Book_service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.8);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+[data-theme="dark"] .Book_service-item {
+  background: rgba(99, 110, 114, 0.3);
+}
+
+/* .Book_service-item:hover {
+  background: rgba(200, 200, 200, 0.5);
+  transform: translateX(5px);
+}
+
+[data-theme="dark"] .Book_service-item:hover {
+  background: rgba(178, 190, 195, 0.3);
+} */
+
+.Book_service-item input[type="checkbox"] {
+  margin-right: 15px;
+  width: 20px;
+  height: 20px;
+  accent-color: #3498db;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .Book_service-item input[type="checkbox"] {
+  accent-color: #74b9ff;
+}
+
+.Book_service-item label {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2d3436;
+}
+
+[data-theme="dark"] .Book_service-item label {
+  color: #dfe6e9;
+}
+
+.Book_service-item span {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e74c3c;
+}
+
+[data-theme="dark"] .Book_service-item span {
+  color: #ff7675;
+}
+
+/* Amount Details */
+.Book_amount-details {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: rgba(245, 245, 245, 0.8);
+}
+
+[data-theme="dark"] .Book_amount-details {
+  border: 1px solid #576574;
+  background: rgba(45, 52, 54, 0.8);
+}
+
+.Book_amount-details p {
+  margin: 5px 0;
+}
+
+.Book_amount-details hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+[data-theme="dark"] .Book_amount-details hr {
+  border-top: 1px solid #576574;
+}
+
+/* Buttons */
+.Book_submit-button,
+.Book_cancel-button,
+.Book_payment-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.Book_submit-button {
+  background: #2ecc71;
+  color: #fff;
+}
+
+.Book_cancel-button {
+  background: #e74c3c;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.Book_payment-button {
+  background: #2ecc71;
+  color: #333;
+  width: 100%;
+}
+
+[data-theme="dark"] .Book_submit-button {
+  background: #27ae60;
+}
+
+[data-theme="dark"] .Book_cancel-button {
+  background: #c0392b;
+}
+
+[data-theme="dark"] .Book_payment-button {
+  background: #f39c12;
+  color: #fff;
+}
+
+.Book_submit-button:hover,
+.Book_cancel-button:hover,
+.Book_payment-button:hover {
+  transform: translateY(-2px);
+}
+
+.Book_submit-button:hover {
+  background: #27ae60;
+}
+
+.Book_cancel-button:hover {
+  background: #c0392b;
+}
+
+/* .Book_payment-button:hover {
+  background: #e1b50e;
+} */
+
+[data-theme="dark"] .Book_submit-button:hover {
+  background: #219653;
+}
+
+[data-theme="dark"] .Book_cancel-button:hover {
+  background: #a93226;
+}
+
+[data-theme="dark"] .Book_payment-button:hover {
+  background: #d68910;
+}
+
+.Book_form-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Cash Info */
+.Book_cash-info {
+  padding: 15px;
+  border: 1px solid #f1c40f;
+  border-radius: 5px;
+  background: rgba(241, 196, 15, 0.1);
+}
+
+[data-theme="dark"] .Book_cash-info {
+  border: 1px solid #f39c12;
+  background: rgba(243, 156, 18, 0.1);
+}
+
+.Book_cash-info h4 {
+  color: #f1c40f;
+}
+
+[data-theme="dark"] .Book_cash-info h4 {
+  color: #f39c12;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .Book_room-booking-container {
-    padding: 15px;
-  }
-
-  .Book_room-booking-container h2 {
-    font-size: 1.8rem;
-  }
-
-  .Book_room-booking-container h3 {
-    font-size: 1.3rem;
+  .Book_form-group {
+    min-width: 100%;
   }
 
   .Book_form-row {
     flex-direction: column;
-    gap: 12px;
   }
 
-  .Book_form-group input[type="number"],
-  .Book_form-group input[name="cvv"] {
+  .Book_counter {
+    justify-content: center;
+  }
+
+  .Book_submit-button,
+  .Book_cancel-button {
     width: 100%;
+    margin: 5px 0;
   }
 
-  .Book_form-buttons {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .Book_service-item {
     flex-direction: column;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 5px;
   }
 
-  .Book_form-buttons .Book_submit-button,
-  .Book_form-buttons .Book_cancel-button {
-    max-width: 100%;
+  .Book_service-item input[type="checkbox"] {
+    margin-right: 0;
   }
 }
 
@@ -331,96 +471,17 @@
     padding: 10px;
   }
 
-  .Book_room-booking-container h2 {
-    font-size: 1.5rem;
-  }
-
-  .Book_room-booking-container h3 {
-    font-size: 1.2rem;
-  }
-
-  .Book_form-group input,
-  .Book_form-group select {
-    padding: 8px;
+  input,
+  select {
     font-size: 0.9rem;
   }
 
-  .Book_submit-button,
-  .Book_cancel-button,
-  .Book_payment-button {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-
-  .Book_amount-details {
-    padding: 10px;
-  }
-
-  .Book_counter-button {
-    width: 35px;
-    height: 35px;
+  .Book_service-item label {
     font-size: 1rem;
   }
 
-  .Book_counter input {
-    width: 40%;
+  .Book_service-item span {
     font-size: 0.9rem;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .Book_room-booking-container {
-    padding: 20px;
-  }
-
-  .Book_form-row {
-    gap: 15px;
-  }
-
-  .Book_form-group input[type="number"] {
-    width: 120px;
-  }
-
-  .Book_form-group input[name="cvv"] {
-    width: 100px;
-  }
-
-  .Book_form-buttons .Book_submit-button,
-  .Book_form-buttons .Book_cancel-button {
-    max-width: 250px;
-  }
-}
-
-@media (min-width: 1025px) {
-  .Book_room-booking-container {
-    padding: 30px;
-  }
-
-  .Book_room-booking-container h2 {
-    font-size: 2.5rem;
-  }
-
-  .Book_room-booking-container h3 {
-    font-size: 1.75rem;
-  }
-
-  .Book_form-row {
-    gap: 25px;
-  }
-
-  .Book_submit-button,
-  .Book_cancel-button,
-  .Book_payment-button {
-    padding: 14px 25px;
-    font-size: 1.1rem;
-  }
-
-  .Book_form-buttons {
-    gap: 20px;
-  }
-
-  .Book_form-buttons .Book_submit-button,
-  .Book_form-buttons .Book_cancel-button {
-    max-width: 300px;
-  }
-}

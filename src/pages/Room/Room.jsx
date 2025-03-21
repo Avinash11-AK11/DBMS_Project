@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
 import bedroomImage from "../../assets/Room/bed-room.jpg";
+import { useTheme } from "../../context/ThemeContext.jsx";
 import "./Room.css";
 
 const roomsData = [
@@ -52,14 +52,6 @@ const roomsData = [
     price: "₹6,499/night",
     type: "double",
   },
-//   {
-//     image: bedroomImage,
-//     name: "Presidential Suite",
-//     rating: 9.5,
-//     description: "Ultimate luxury with top-tier amenities and services.",
-//     price: "₹25,999/night",
-//     type: "suite",
-//   },
   {
     image: bedroomImage,
     name: "Single Room",
@@ -76,14 +68,6 @@ const roomsData = [
     price: "₹4,799/night",
     type: "double",
   },
-//   {
-//     image: bedroomImage,
-//     name: "Junior Suite",
-//     rating: 8.9,
-//     description: "Perfect balance of luxury and affordability.",
-//     price: "₹9,999/night",
-//     type: "suite",
-//   },
   {
     image: bedroomImage,
     name: "Garden View Room",
@@ -92,14 +76,6 @@ const roomsData = [
     price: "₹6,999/night",
     type: "double",
   },
-//   {
-//     image: bedroomImage,
-//     name: "Ocean View Room",
-//     rating: 9.0,
-//     description: "Wake up to breathtaking views of the ocean.",
-//     price: "₹11,999/night",
-//     type: "double",
-//   },
   {
     image: bedroomImage,
     name: "Royal Suite",
@@ -116,14 +92,6 @@ const roomsData = [
     price: "₹7,499/night",
     type: "single",
   },
-//   {
-//     image: bedroomImage,
-//     name: "Private Villa Room",
-//     rating: 9.3,
-//     description: "Enjoy privacy with luxury in a private villa setting.",
-//     price: "₹18,999/night",
-//     type: "suite",
-//   },
   {
     image: bedroomImage,
     name: "Premium Suite",
@@ -135,23 +103,17 @@ const roomsData = [
 ];
 
 const RoomCard = ({ room }) => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-      <img
-        src={room.image}
-        alt={room.name}
-        className="w-full h-48 object-cover"
-      />
-      <div className="p-4 text-center">
-        <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
-          {room.rating}
-        </span>
-        <h3 className="text-lg font-semibold mt-2">{room.name}</h3>
-        <p className="text-gray-600 mt-2">{room.description}</p>
-        <p className="font-bold text-gray-700 mt-2">{room.price}</p>
-        <button className="mt-4 w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
-          Book Now
-        </button>
+    <div className="room-card">
+      <img src={room.image} alt={room.name} className="room-image" />
+      <div className="room-content">
+        <span className="room-rating">{room.rating}</span>
+        <h3 className="room-name">{room.name}</h3>
+        <p className="room-description">{room.description}</p>
+        <p className="room-price">{room.price}</p>
+        <button className="room-book-button">Book Now</button>
       </div>
     </div>
   );
@@ -167,11 +129,9 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="bg-green-500 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Room Selection Filter */}
-        <div className="flex space-x-4 items-center">
-          {/* Room Type Dropdown */}
+    <nav className="navbar">
+      <div className="navbar-container">
+        <div className="filters">
           <select
             className="filter-select"
             value={roomType}
@@ -183,7 +143,6 @@ const Navbar = ({ onSearch }) => {
             <option value="suite">Suite</option>
           </select>
 
-          {/* Price Range Dropdown */}
           <select
             className="filter-select"
             value={priceRange}
@@ -195,7 +154,6 @@ const Navbar = ({ onSearch }) => {
             <option value="10000+">₹10,000+</option>
           </select>
 
-          {/* Rating Dropdown (1 to 10) */}
           <select
             className="filter-select"
             value={rating}
@@ -209,11 +167,7 @@ const Navbar = ({ onSearch }) => {
             ))}
           </select>
 
-          {/* Search Button */}
-          <button
-            className="search-button"
-            onClick={handleSearch}
-          >
+          <button className="search-button" onClick={handleSearch}>
             Search
           </button>
         </div>
@@ -251,13 +205,11 @@ const RoomsPage = () => {
   };
 
   return (
-    <div>
-      <Navbar onSearch={handleSearch} /> {/* Add the Navbar here */}
-      <div className="min-h-screen bg-gray-100 py-10 px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          Discover Your Perfect Stay
-        </h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="rooms-page">
+      <Navbar onSearch={handleSearch} />
+      <div className="rooms-container">
+        <h2 className="page-title">Discover Your Perfect Stay</h2>
+        <div className="rooms-grid">
           {filteredRooms.map((room, index) => (
             <RoomCard key={index} room={room} />
           ))}

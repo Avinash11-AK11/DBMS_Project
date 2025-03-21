@@ -73,7 +73,7 @@
   color: #b0b0d1; /* Soft muted lavender */
 }
 
-input[type="text"] {
+.wifi-form input[type="text"] {
   width: 80%;
   padding: 12px;
   margin: 0 auto;

@@ -10,7 +10,7 @@ import Book from './pages/Book-1/book.jsx';
 import Info from './hotel_info/information/info.jsx';
 import Rules from './hotel_info/rules/rules.jsx';
 import Freewifi from './Services/Free-wifi/Free_wifi.jsx';
-// import Spa from './Services/Luxury spa/spa.jsx';
+import Spa from './Services/Luxury spa/spa.jsx';
 import Pool from './Services/Swimming-pool/pool.jsx';
 import Bar from './Services/Bars/bar.jsx';
 import Fitness from './Services/Fitness_center/fitness.jsx';
@@ -35,7 +35,7 @@ function App() {
         <Route path="/info" element={<Info />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="/free-wifi" element={<Freewifi />} />
-        {/* <Route path="/spa" element={<Spa />} /> */}
+        <Route path="/spa" element={<Spa />} />
         <Route path="/pool" element={<Pool />} />
         <Route path="/bar" element={<Bar />} />
         <Route path="/movie" element={<Movie />} />

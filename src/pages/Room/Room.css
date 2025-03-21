@@ -1,90 +1,60 @@
-/* Home.css */
-
-/* Global Styles */
+/* Base Styles */
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #f9f9f9; /* Light mode background */
+  color: #333; /* Light mode text color */
 }
 
-/* Navbar Styles */
-nav {
-  background-color: #48bb78; /* Green background */
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1a1a1a; /* Dark mode background */
+  color: #f9f9f9; /* Dark mode text color */
+}
+
+/* Navbar */
+.navbar {
+  background-color: #48bb78; /* Primary color (green) */
   padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.container {
+.navbar-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.flex {
+.filters {
   display: flex;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.items-center {
+  gap: 1rem;
   align-items: center;
 }
 
-.space-x-4 > * + * {
-  margin-left: 1rem;
-}
-
-/* Dropdown Styles */
 .filter-select {
-  padding: 0.75rem 1.5rem; /* Comfortable padding */
-  border: 2px solid #ffffff; /* White border */
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #fff; /* White border */
   border-radius: 8px; /* Rounded corners */
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.9
-  ); /* Semi-transparent white background */
-  color: #2d3748; /* Dark gray text color */
-  font-size: 1rem; /* Font size */
-  font-weight: 500; /* Medium font weight */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  appearance: none; /* Remove default arrow in some browsers */
-  -webkit-appearance: none; /* Remove default arrow in Safari */
-  -moz-appearance: none; /* Remove default arrow in Firefox */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232d3748'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e"); /* Custom dropdown arrow */
-  background-repeat: no-repeat;
-  background-position: right 1rem center; /* Position the arrow */
-  background-size: 12px; /* Size of the arrow */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  color: #333; /* Light mode text color */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .filter-select:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    1
-  ); /* Fully white background on hover */
+  background-color: rgba(255, 255, 255, 1); /* Fully white on hover */
   border-color: #e2e8f0; /* Light gray border on hover */
 }
 
-.filter-select:focus {
-  outline: none; /* Remove default outline */
-  border-color: #48bb78; /* Green border on focus */
-  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2); /* Green glow effect */
-}
-
-/* Search Button Styles */
 .search-button {
   padding: 0.75rem 1.5rem;
-  background-color: white !important;
-  color: #48bb78;
-  border: 2px solid white;
-  border-radius: 8px;
+  background-color: #fff; /* White background */
+  color: #48bb78; /* Primary color (green) */
+  border: 2px solid #fff; /* White border */
+  border-radius: 8px; /* Rounded corners */
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
@@ -93,187 +63,130 @@ nav {
 
 .search-button:hover {
   background-color: #f7fafc; /* Light gray background on hover */
-  color: #48bb78;
-  border-color: #48bb78;
+  color: #48bb78; /* Primary color (green) */
+  border-color: #48bb78; /* Green border on hover */
 }
 
-.search-button:active {
-  transform: scale(0.95); /* Slight scale-down effect on click */
+/* Rooms Page */
+.rooms-page {
+  padding: 2rem;
 }
 
-/* Responsive Navbar */
-@media (max-width: 768px) {
-  .flex.space-x-4 {
-    flex-direction: column; /* Stack filters vertically on smaller screens */
-    align-items: stretch; /* Stretch items to full width */
-  }
-
-  .filter-select {
-    width: 100%; /* Full width on smaller screens */
-    margin-bottom: 0.5rem; /* Space between stacked selects */
-  }
-
-  /* Custom CSS for the Search Button */
-  .search-button {
-    background-color: white; /* White background */
-    color: black; /* Black text color */
-    padding: 0.5rem 1.5rem; /* px-6 py-2 equivalent */
-    border-radius: 0.25rem; /* Rounded corners */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for hover */
-  }
-
-  .search-button:hover {
-    background-color: #f3f4f6; /* Light gray background on hover (hover:bg-gray-100 equivalent) */
-  }
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #333; /* Light mode text color */
 }
 
-/* Room Card Styles */
-.bg-white {
-  background-color: white;
+body.dark-mode .page-title {
+  color: #f9f9f9; /* Dark mode text color */
 }
 
-.rounded-lg {
-  border-radius: 0.75rem;
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.shadow-lg {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.overflow-hidden {
+/* Room Card */
+.room-card {
+  background-color: #fff; /* Light mode card background */
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.transform {
-  transform: scale(1);
+body.dark-mode .room-card {
+  background-color: #2a2a2a; /* Dark mode card background */
+  color: #f9f9f9; /* Dark mode text color */
 }
 
-.hover\:scale-105:hover {
-  transform: scale(1.05);
+.room-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
-.w-full {
+.room-image {
   width: 100%;
-}
-
-.h-48 {
-  height: 12rem;
-}
-
-.object-cover {
+  height: 200px;
   object-fit: cover;
 }
 
-.p-4 {
-  padding: 1rem !important;
-}
-
-.text-center {
+.room-content {
+  padding: 1rem;
   text-align: center;
 }
 
-.bg-green-500 {
-  background-color: #48bb78 ;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.rounded-full {
-  border-radius: 9999px;
-}
-
-.text-sm {
+.room-rating {
+  background-color: #48bb78; /* Primary color (green) */
+  color: #fff; /* White text */
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px; /* Fully rounded */
   font-size: 0.875rem;
 }
 
-.font-semibold {
+.room-name {
+  font-size: 1.5rem;
   font-weight: 600;
+  margin: 0.5rem 0;
+  color: #333; /* Light mode text color */
 }
 
-.mt-2 {
-  margin-top: 0.5rem;
+body.dark-mode .room-name {
+  color: #f9f9f9; /* Dark mode text color */
 }
 
-.text-gray-600 {
-  color: #718096;
+.room-description {
+  font-size: 1rem;
+  color: #666; /* Light mode secondary text color */
+  margin: 0.5rem 0;
 }
 
-.text-gray-700 {
-  color: #4a5568;
+body.dark-mode .room-description {
+  color: #ccc; /* Dark mode secondary text color */
 }
 
-.mt-4 {
-  margin-top: 1rem;
+.room-price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333; /* Light mode text color */
+  margin: 0.5rem 0;
 }
 
-.bg-gray-100 {
-  background-color: #f7fafc;
+body.dark-mode .room-price {
+  color: #f9f9f9; /* Dark mode text color */
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+.room-book-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #48bb78; /* Primary color (green) */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.room-book-button:hover {
+  background-color: #38a169; /* Darker green on hover */
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-}
-
-.text-gray-800 {
-  color: #2d3748;
-}
-
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-
-.max-w-7xl {
-  max-width: 100%;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column; /* Stack filters vertically on smaller screens */
   }
-}
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .filter-select,
+  .search-button {
+    width: 100%; /* Full width on smaller screens */
   }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.hover\:bg-green-600:hover {
-  background-color: #38a169 ;
 }

@@ -8,13 +8,8 @@ const RoomBooking = () => {
   const [formData, setFormData] = useState({
     checkIn: "",
     checkOut: "",
-    bookingType: "",
     arrivalFrom: "",
-    bookingReferenceNo: "",
-    purposeOfVisit: "",
-    remarks: "",
     roomType: "",
-    roomNo: "",
     adults: 0,
     children: 0,
     mobileNo: "",
@@ -23,14 +18,9 @@ const RoomBooking = () => {
     lastName: "",
     fatherName: "",
     gender: "",
-    occupation: "",
     dob: "",
-    nationality: "",
     identityType: "",
     identityNumber: "",
-    identityFront: null,
-    identityBack: null,
-    guestImage: null,
     paymentMethod: "",
     upiId: "",
     cardNumber: "",
@@ -40,6 +30,7 @@ const RoomBooking = () => {
     accountNumber: "",
     ifscCode: "",
     totalAmount: 0,
+    selectedServices: [],
   });
 
   const [showUpiField, setShowUpiField] = useState(false);
@@ -47,10 +38,10 @@ const RoomBooking = () => {
   const [showBankFields, setShowBankFields] = useState(false);
   const [showCashInfo, setShowCashInfo] = useState(false);
 
-  const PER_ADULT_CHARGE = 1000; // ₹1,000 per adult
-  const PER_CHILD_CHARGE = 500; // ₹500 per child
-  const HOTEL_CHARGES_PERCENTAGE = 0.03; // 3% of room price
-  const GST_RATE = 0.08; // 8% GST
+  const PER_ADULT_CHARGE = 0;
+  const PER_CHILD_CHARGE = 0;
+  const HOTEL_CHARGES_PERCENTAGE = 0.03;
+  const GST_RATE = 0.08;
 
   const rooms = [
     {
@@ -142,6 +133,29 @@ const RoomBooking = () => {
     },
   ];
 
+  const services = {
+    spa: [
+      { name: "Full Body Massage", price: 2000 },
+      { name: "Aromatherapy", price: 1500 },
+      { name: "Facial Treatment", price: 2500 },
+    ],
+    swimmingPool: [
+      { name: "Pool Pass", price: 0 },
+      { name: "swimmingPool Costume", price: 200 },
+      // { name: "Monthly Membership", price: 3000 },
+    ],
+    movieTheater: [
+      { name: "Standard Ticket", price: 300 },
+      { name: "Premium Ticket", price: 500 },
+      // { name: "VIP Ticket", price: 1000 },
+    ],
+    fitnessCenter: [
+      { name: " Day Pass", price: 0 },
+      // { name: "Weekly Pass", price: 2000 },
+      // { name: "Monthly Membership", price: 5000 },
+    ],
+  };
+
   useEffect(() => {
     if (!formData.roomNo) return;
 
@@ -150,11 +164,21 @@ const RoomBooking = () => {
       ? parseInt(selectedRoom.price.replace(/[^0-9]/g, ""), 10)
       : 0;
 
+    const servicePrice = formData.selectedServices.reduce((total, service) => {
+      const serviceType = Object.keys(services).find((type) =>
+        services[type].some((s) => s.name === service)
+      );
+      const selectedService = services[serviceType]?.find(
+        (s) => s.name === service
+      );
+      return total + (selectedService ? selectedService.price : 0);
+    }, 0);
+
     const baseAdults = formData.roomType === "double" ? 2 : 1;
     const extraAdults = Math.max(0, formData.adults - baseAdults);
     const adultsCharge = extraAdults * PER_ADULT_CHARGE;
     const childrenCharge = formData.children * PER_CHILD_CHARGE;
-    const subtotal = roomPrice + adultsCharge + childrenCharge;
+    const subtotal = roomPrice + adultsCharge + childrenCharge + servicePrice;
     const hotelChargesAndGST = subtotal * (HOTEL_CHARGES_PERCENTAGE + GST_RATE);
     const totalAmount = subtotal + hotelChargesAndGST;
 
@@ -162,10 +186,15 @@ const RoomBooking = () => {
       ...prev,
       totalAmount: totalAmount,
     }));
-  }, [formData.roomNo, formData.adults, formData.children]);
+  }, [
+    formData.roomNo,
+    formData.adults,
+    formData.children,
+    formData.selectedServices,
+  ]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     if (name === "roomType") {
       let adults = 0;
@@ -259,6 +288,13 @@ const RoomBooking = () => {
           ifscCode: "",
         });
       }
+    } else if (type === "checkbox") {
+      setFormData((prev) => ({
+        ...prev,
+        selectedServices: checked
+          ? [...prev.selectedServices, value]
+          : prev.selectedServices.filter((service) => service !== value),
+      }));
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -271,7 +307,6 @@ const RoomBooking = () => {
 
   const handleRemoveFile = (fieldName) => {
     setFormData({ ...formData, [fieldName]: null });
-    // Reset the file input value
     const input = document.querySelector(`input[name="${fieldName}"]`);
     if (input) input.value = "";
   };
@@ -352,29 +387,17 @@ const RoomBooking = () => {
     setFormData({
       checkIn: "",
       checkOut: "",
-      bookingType: "",
-      arrivalFrom: "",
-      bookingReferenceNo: "",
-      purposeOfVisit: "",
-      remarks: "",
       roomType: "",
-      roomNo: "",
       adults: 0,
       children: 0,
       mobileNo: "",
       title: "",
       firstName: "",
       lastName: "",
-      fatherName: "",
       gender: "",
-      occupation: "",
       dob: "",
-      nationality: "",
       identityType: "",
       identityNumber: "",
-      identityFront: null,
-      identityBack: null,
-      guestImage: null,
       paymentMethod: "",
       upiId: "",
       cardNumber: "",
@@ -384,6 +407,7 @@ const RoomBooking = () => {
       accountNumber: "",
       ifscCode: "",
       totalAmount: 0,
+      selectedServices: [],
     });
     setShowCashInfo(false);
     window.history.back();
@@ -426,6 +450,7 @@ const RoomBooking = () => {
         roomPrice: 0,
         adultsCharge: 0,
         childrenCharge: 0,
+        servicePrice: 0,
         hotelChargesAndGST: 0,
         totalAmount: 0,
       };
@@ -436,11 +461,21 @@ const RoomBooking = () => {
       ? parseInt(selectedRoom.price.replace(/[^0-9]/g, ""), 10)
       : 0;
 
+    const servicePrice = formData.selectedServices.reduce((total, service) => {
+      const serviceType = Object.keys(services).find((type) =>
+        services[type].some((s) => s.name === service)
+      );
+      const selectedService = services[serviceType]?.find(
+        (s) => s.name === service
+      );
+      return total + (selectedService ? selectedService.price : 0);
+    }, 0);
+
     const baseAdults = formData.roomType === "double" ? 2 : 1;
     const extraAdults = Math.max(0, formData.adults - baseAdults);
     const adultsCharge = extraAdults * PER_ADULT_CHARGE;
     const childrenCharge = formData.children * PER_CHILD_CHARGE;
-    const subtotal = roomPrice + adultsCharge + childrenCharge;
+    const subtotal = roomPrice + adultsCharge + childrenCharge + servicePrice;
     const hotelChargesAndGST = subtotal * (HOTEL_CHARGES_PERCENTAGE + GST_RATE);
     const totalAmount = subtotal + hotelChargesAndGST;
 
@@ -448,6 +483,7 @@ const RoomBooking = () => {
       roomPrice,
       adultsCharge,
       childrenCharge,
+      servicePrice,
       hotelChargesAndGST,
       totalAmount,
     };
@@ -484,65 +520,18 @@ const RoomBooking = () => {
               />
             </div>
             <div className="Book_form-group">
-              <label>Arrival From</label>
+              <label>Address</label>
               <input
                 type="text"
-                name="arrivalFrom"
+                name="address"
                 value={formData.arrivalFrom}
                 onChange={handleChange}
-                placeholder="Arrival From"
+                placeholder="Address"
               />
             </div>
           </div>
-          {/* <div className="form-row">
-            <div className="form-group">
-              <label>Booking Type</label>
-              <select
-                name="bookingType"
-                value={formData.bookingType}
-                onChange={handleChange}
-              >
-                <option value="">Choose Booking Type</option>
-                <option value="online">Online</option>
-                <option value="walk-in">Walk-in</option>
-                <option value="agent">Agent</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label>Booking Reference No.</label>
-              <input
-                type="text"
-                name="bookingReferenceNo"
-                value={formData.bookingReferenceNo}
-                onChange={handleChange}
-                placeholder="Booking Reference No."
-              />
-            </div>
-            <div className="form-group">
-              <label>Purpose of Visit</label>
-              <input
-                type="text"
-                name="purposeOfVisit"
-                value={formData.purposeOfVisit}
-                onChange={handleChange}
-                placeholder="Purpose of Visit"
-              />
-            </div>
-          </div>
-          <div className="form-row">
-            <div className="form-group full-width">
-              <label>Remarks</label>
-              <input
-                type="text"
-                name="remarks"
-                value={formData.remarks}
-                onChange={handleChange}
-                placeholder="Remarks"
-              />
-            </div>
-          </div> */}
         </section>
-        
+
         {/* Room Details */}
         <section className="Book_room-details">
           <h3>Room Details</h3>
@@ -581,7 +570,7 @@ const RoomBooking = () => {
                     ))}
               </select>
             </div>
-            <div className="Book_form-group"></div> 
+            <div className="Book_form-group"></div>
           </div>
           <div className="Book_form-row">
             <div className="Book_form-group">
@@ -645,7 +634,42 @@ const RoomBooking = () => {
                 </button>
               </div>
             </div>
-            <div className="Book_form-group"></div> 
+            <div className="Book_form-group"></div>
+          </div>
+        </section>
+
+        {/* Additional Services */}
+        <section className="Book_services">
+          <h3>Additional Services</h3>
+          <div className="Book_form-row">
+            <div className="Book_form-group full-width">
+              {Object.entries(services).map(([type, serviceList]) => (
+                <div key={type} className="Book_service-category">
+                  <h4>
+                    {type === "spa" && "Spa Services"}
+                    {type === "swimmingPool" && "Swimming Pool Services"}
+                    {type === "movieTheater" && "Movie Theater Services"}
+                    {type === "fitnessCenter" && "Fitness Center Services"}
+                  </h4>
+                  {serviceList.map((service) => (
+                    <div key={service.name} className="Book_service-item">
+                      <input
+                        type="checkbox"
+                        name="service"
+                        value={service.name}
+                        checked={formData.selectedServices.includes(
+                          service.name
+                        )}
+                        onChange={handleChange}
+                      />
+                      <label>
+                        {service.name} (₹{service.price})
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -653,15 +677,6 @@ const RoomBooking = () => {
         <section className="Book_customer-details">
           <h3>Customer Details</h3>
           <div className="Book_form-row">
-            <div className="Book_form-group">
-              <label>Mobile No.</label>
-              <input
-                type="tel"
-                name="mobileNo"
-                value={formData.mobileNo}
-                onChange={handleChange}
-              />
-            </div>
             <div className="Book_form-group">
               <label>Title</label>
               <select
@@ -685,26 +700,18 @@ const RoomBooking = () => {
                 required
               />
             </div>
-          </div>
-          <div className="Book_form-row">
             <div className="Book_form-group">
-              <label>Last Name</label>
+              <label>Last Name *</label>
               <input
                 type="text"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                required
               />
             </div>
-            {/* <div className="form-group">
-              <label>Father Name</label>
-              <input
-                type="text"
-                name="fatherName"
-                value={formData.fatherName}
-                onChange={handleChange}
-              />
-            </div> */}
+          </div>
+          <div className="Book_form-row">
             <div className="Book_form-group">
               <label>Gender</label>
               <select
@@ -718,17 +725,15 @@ const RoomBooking = () => {
                 <option value="other">Other</option>
               </select>
             </div>
-          </div>
-          <div className="Book_form-row">
-            {/* <div className="form-group">
-              <label>Occupation</label>
+            <div className="Book_form-group">
+              <label>Mobile No.</label>
               <input
-                type="text"
-                name="occupation"
-                value={formData.occupation}
+                type="tel"
+                name="mobileNo"
+                value={formData.mobileNo}
                 onChange={handleChange}
               />
-            </div> */}
+            </div>
             <div className="Book_form-group">
               <label>Date of Birth</label>
               <input
@@ -738,22 +743,10 @@ const RoomBooking = () => {
                 onChange={handleChange}
               />
             </div>
-            {/* <div className="form-group">
-              <label>Nationality</label>
-              <select
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-              >
-                <option value="">Select Nationality</option>
-                {countries.map((country) => (
-                  <option key={country.code} value={country.name}>
-                    {country.name}
-                  </option>
-                ))}
-              </select>
-            </div> */}
           </div>
+          {/* <div className="Book_form-row">
+            
+          </div> */}
         </section>
 
         {/* Identity Details */}
@@ -783,76 +776,8 @@ const RoomBooking = () => {
                 required
               />
             </div>
-            <div className="Book_form-group"></div> {/* Empty for alignment */}
+            <div className="Book_form-group"></div>
           </div>
-          {/* <div className="form-row">
-            <div className="form-group">
-              <label>Identity Upload (Front Side)</label>
-              <input
-                type="file"
-                name="identityFront"
-                onChange={handleFileChange}
-                accept="image/*,.pdf"
-                disabled={formData.identityFront !== null}
-              />
-              {formData.identityFront && (
-                <div className="file-preview">
-                  <span>{formData.identityFront.name}</span>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveFile("identityFront")}
-                    className="remove-button"
-                  >
-                    Remove
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label>Identity Upload (Back Side)</label>
-              <input
-                type="file"
-                name="identityBack"
-                onChange={handleFileChange}
-                accept="image/*,.pdf"
-                disabled={formData.identityBack !== null}
-              />
-              {formData.identityBack && (
-                <div className="file-preview">
-                  <span>{formData.identityBack.name}</span>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveFile("identityBack")}
-                    className="remove-button"
-                  >
-                    Remove
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="form-group">
-              <label>Guest Image</label>
-              <input
-                type="file"
-                name="guestImage"
-                onChange={handleFileChange}
-                accept="image/*"
-                disabled={formData.guestImage !== null}
-              />
-              {formData.guestImage && (
-                <div className="file-preview">
-                  <span>{formData.guestImage.name}</span>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveFile("guestImage")}
-                    className="remove-button"
-                    >
-                    Remove
-                  </button>
-                </div>
-              )}
-            </div>
-          </div> */}
         </section>
 
         {/* Payment Details */}
@@ -871,7 +796,6 @@ const RoomBooking = () => {
                 <option value="debit_card">Debit Card</option>
                 <option value="upi">UPI</option>
                 <option value="bank_payment">Bank Payment</option>
-                {/* <option value="cash">Cash</option> */}
               </select>
             </div>
             <div className="Book_form-group">
@@ -899,6 +823,12 @@ const RoomBooking = () => {
                         {amountDetails.childrenCharge.toLocaleString("en-IN")}
                       </p>
                     )}
+                    {amountDetails.servicePrice > 0 && (
+                      <p>
+                        Services Charge ({formData.selectedServices.join(", ")}
+                        ): ₹{amountDetails.servicePrice.toLocaleString("en-IN")}
+                      </p>
+                    )}
                     <p>
                       Hotel Charges + GST (11%): ₹
                       {amountDetails.hotelChargesAndGST.toLocaleString(
@@ -921,7 +851,7 @@ const RoomBooking = () => {
                 )}
               </div>
             </div>
-            <div className="Book_form-group"></div> {/* Empty for alignment */}
+            <div className="Book_form-group"></div>
           </div>
 
           {showUpiField && (
@@ -1034,8 +964,8 @@ const RoomBooking = () => {
             formData.paymentMethod === "debit_card" ||
             formData.paymentMethod === "bank_payment" ||
             formData.paymentMethod === "cash") && (
-            <div className="form-row">
-              <div className="form-group full-width">
+            <div className="Book_form-row">
+              <div className="Book_form-group full-width">
                 <button
                   type="button"
                   className="Book_payment-button"
