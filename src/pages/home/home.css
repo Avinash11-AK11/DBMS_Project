@@ -190,7 +190,7 @@ body.dark-mode .Home_info-item {
 .Home_info-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  border-color: #007bff;
+  /* border-color: #007bff; */
 }
 
 body.dark-mode .Home_info-item:hover {

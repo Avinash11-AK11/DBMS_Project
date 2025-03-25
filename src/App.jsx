@@ -1,4 +1,7 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useTheme } from "./context/ThemeContext.jsx";
 import './App.css';
 import Navbar from './pages/Component/Navbar/Navbar.jsx';
 import Home from './pages/home/home.jsx';
@@ -19,8 +22,13 @@ import Footer from './pages/Component/Footer/Footer.jsx';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-
 function App() {
+  const { isDarkMode, toggleDarkMode } = useTheme(); // Changed toggleTheme to toggleDarkMode
+
+  // Apply dark-mode class to body globally
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <Router>

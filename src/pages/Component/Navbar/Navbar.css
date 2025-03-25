@@ -175,6 +175,40 @@ body.dark-mode #nav .navbar-nav.ms-auto a.cancel:hover {
   background-color: #cc3333;
 }
 
+/* Username Edit Container */
+.username-edit-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Update Button */
+.update-btn {
+  padding: 2px 8px;
+  font-size: 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Dark Mode Styles for Update Button */
+.dark-mode .update-btn {
+  background-color: #66b3ff;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+  .username-edit-container {
+    flex-direction: row; /* Keep horizontal on mobile */
+  }
+  .update-btn {
+    font-size: 10px; /* Smaller button on mobile */
+    padding: 2px 6px;
+  }
+}
+
 /* Hamburger Menu */
 #nav .hamburger {
   display: none;
@@ -231,7 +265,7 @@ body.dark-mode .profile-logo:hover {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  padding: 15px;
+  padding: 20px;
   min-width: 220px;
   z-index: 1001;
   border: 1px solid #eee;
@@ -256,14 +290,16 @@ body.dark-mode .profile-dropdown {
 }
 
 .profile-item {
-  padding: 10px 15px;
-  font-size: 15px;
+  padding: 12px 15px;
+  font-size: 16px;
   color: #333;
   border-bottom: 1px solid #f1f1f1;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   transition: background-color 0.3s ease;
+  border-radius: 8px;
+  margin: 5px 0;
 }
 
 body.dark-mode .profile-item {
@@ -273,6 +309,16 @@ body.dark-mode .profile-item {
 
 .profile-item:last-child {
   border-bottom: none;
+}
+
+.profile-item img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+body.dark-mode .profile-item img {
+  filter: brightness(0) invert(1); /* Invert icon colors for dark mode */
 }
 
 .profile-link {
@@ -304,24 +350,23 @@ body.dark-mode .profile-link:hover {
 .profile-link.logout {
   color: #d60000;
   font-weight: 600;
-  margin-top: 5px;
-  padding-top: 10px;
-  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding: 10px 15px;
   border: 1.5px solid #d60000;
   border-radius: 8px;
-  padding: 6px 12px;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 body.dark-mode .profile-link.logout {
   color: #ff4d4d;
   border-color: #ff4d4d;
-  border-top: 1px solid #444;
 }
 
 .profile-link.logout:hover {
   background-color: #d60000;
   color: white;
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 body.dark-mode .profile-link.logout:hover {
@@ -345,8 +390,25 @@ body.dark-mode #mode-toggle {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  #nav {
+    padding: 15px; /* Slightly more padding for a balanced look */
+    min-height: 70px; /* Taller navbar for better touch interaction */
+  }
+
   #nav .hamburger {
     display: flex;
+    gap: 6px; /* Slightly larger gap for a refined look */
+  }
+
+  #nav .hamburger .line {
+    width: 30px; /* Larger hamburger for easier tapping */
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px; /* Rounded edges for a modern look */
+  }
+
+  body.dark-mode #nav .hamburger .line {
+    background-color: #ffffff; /* Ensure visibility in dark mode */
   }
 
   #nav .navbar-nav.ms-3 {
@@ -356,17 +418,19 @@ body.dark-mode #mode-toggle {
     top: 100%;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 0 0 12px 12px;
-    padding: 15px;
+    background: linear-gradient(145deg, #f5f7fa 0%, #e4e7eb 100%); /* Softer gradient for luxury feel */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 20px 20px; /* More pronounced rounding */
+    padding: 25px;
     z-index: 1000;
-    animation: slideIn 0.3s ease-out;
+    max-height: 85vh; /* Slightly more space for content */
+    overflow-y: auto;
+    animation: slideIn 0.4s ease-out; /* Smoother animation */
   }
 
   body.dark-mode #nav .navbar-nav.ms-3 {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, #1c2526 0%, #2a3439 100%); /* Darker gradient for dark mode */
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
   }
 
   #nav .navbar-nav.ms-3.show {
@@ -375,55 +439,196 @@ body.dark-mode #mode-toggle {
 
   #nav .navbar-nav.ms-3 a {
     width: 100%;
-    text-align: left;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #2c3e50;
-    border-bottom: 1px solid #eee;
-    transition: background 0.3s ease, padding-left 0.3s ease, color 0.3s ease;
+    text-align: center; /* Centered text for a balanced look */
+    padding: 16px 20px; /* Larger tap area */
+    font-size: 18px; /* Larger text for readability */
+    font-weight: 600; /* Bolder text for emphasis */
+    color: #1a2526; /* Darker color for contrast */
+    background: rgba(255, 255, 255, 0.8); /* Subtle background for each item */
+    border-radius: 12px; /* Softer corners */
+    margin: 8px 0; /* More spacing between items */
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
   }
 
   body.dark-mode #nav .navbar-nav.ms-3 a {
-    color: #ffffff;
-    border-bottom: 1px solid #444;
-  }
-
-  #nav .navbar-nav.ms-3 a:last-child {
-    border-bottom: none;
+    color: #e4e7eb;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
   }
 
   #nav .navbar-nav.ms-3 a:hover,
   #nav .navbar-nav.ms-3 a.active {
     background: #007bff;
     color: white;
-    padding-left: 25px;
-    transform: none;
+    transform: scale(1.02); /* Subtle scale effect */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
   }
 
   body.dark-mode #nav .navbar-nav.ms-3 a:hover,
   body.dark-mode #nav .navbar-nav.ms-3 a.active {
     background: #66b0ff;
+    box-shadow: 0 4px 10px rgba(102, 176, 255, 0.2);
   }
 
   #nav .navbar-nav.ms-3 a::after {
-    display: none;
+    display: none; /* Remove underline effect on mobile */
   }
 
   #nav .navbar-nav.ms-auto {
     margin-left: 0;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px; /* More space between buttons */
+    padding: 20px 0; /* Extra padding for separation */
+  }
+
+  #nav .navbar-nav.ms-auto a.book,
+  #nav .navbar-nav.ms-auto a.cancel {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #d60000 0%, #ff3333 100%); /* Gradient for a premium look */
+    box-shadow: 0 4px 12px rgba(214, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  body.dark-mode #nav .navbar-nav.ms-auto a.book,
+  body.dark-mode #nav .navbar-nav.ms-auto a.cancel {
+    background: linear-gradient(90deg, #ff4d4d 0%, #ff6666 100%);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+  }
+
+  #nav .navbar-nav.ms-auto a.book:hover,
+  #nav .navbar-nav.ms-auto a.cancel:hover {
+    background: linear-gradient(90deg, #a10000 0%, #cc3333 100%);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(161, 0, 0, 0.4);
+  }
+
+  body.dark-mode #nav .navbar-nav.ms-auto a.book:hover,
+  body.dark-mode #nav .navbar-nav.ms-auto a.cancel:hover {
+    background: linear-gradient(90deg, #cc3333 0%, #ff6666 100%);
+    box-shadow: 0 6px 15px rgba(204, 51, 51, 0.4);
+  }
+
+  .profile-container {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .profile-logo {
+    width: 45px; /* Slightly larger for better visibility */
+    height: 45px;
+    border-width: 3px;
+    box-shadow: 0 3px 10px rgba(214, 0, 0, 0.2);
+  }
+
+  body.dark-mode .profile-logo {
+    box-shadow: 0 3px 10px rgba(255, 77, 77, 0.2);
   }
 
   .profile-dropdown {
     top: 100%;
+    left: 0;
     right: 0;
-    min-width: 180px;
-    padding: 10px;
+    width: 100%;
+    padding: 25px;
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(145deg, #f5f7fa 0%, #e4e7eb 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: none;
+  }
+
+  body.dark-mode .profile-dropdown {
+    background: linear-gradient(145deg, #1c2526 0%, #2a3439 100%);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
   }
 
   .profile-item {
-    font-size: 14px;
-    padding: 8px 12px;
+    font-size: 18px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  body.dark-mode .profile-item {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 3px 8px rgba(255, 255, 255, 0.05);
+  }
+
+  .profile-item img {
+    width: 28px; /* Larger icons for better visibility */
+    height: 28px;
+  }
+
+  .profile-item:hover {
+    background: rgba(0, 123, 255, 0.1);
+    transform: scale(1.02);
+    color: #007bff;
+  }
+
+  body.dark-mode .profile-item:hover {
+    background: rgba(102, 176, 255, 0.1);
+    color: #66b0ff;
+  }
+
+  .profile-link.logout {
+    padding: 14px 20px;
+    font-size: 18px;
+    border-radius: 15px;
+    background: linear-gradient(90deg, #d60000 0%, #ff3333 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(214, 0, 0, 0.3);
+    margin-top: 15px;
+  }
+
+  body.dark-mode .profile-link.logout {
+    background: linear-gradient(90deg, #ff4d4d 0%, #ff6666 100%);
+    box-shadow: 0 4px 12px rgba(255, 77, 77, 0.3);
+  }
+
+  .profile-link.logout:hover {
+    background: linear-gradient(90deg, #a10000 0%, #cc3333 100%);
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(161, 0, 0, 0.4);
+  }
+
+  body.dark-mode .profile-link.logout:hover {
+    background: linear-gradient(90deg, #cc3333 0%, #ff6666 100%);
+    box-shadow: 0 6px 15px rgba(204, 51, 51, 0.4);
+  }
+
+  #nav .logo {
+    width: 55px; /* Slightly smaller for mobile */
+    height: 55px;
+  }
+
+  #mode-toggle {
+    padding: 10px 18px;
+    font-size: 1.6rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-mode #mode-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
   }
 }
 

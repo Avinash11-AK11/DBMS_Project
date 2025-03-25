@@ -5,17 +5,14 @@
   box-sizing: border-box;
 }
 
+/* Base Styles (Light Mode by Default) */
 .Book_room-booking-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Arial', sans-serif;
   border-radius: 10px;
   transition: all 0.3s ease;
-}
-
-/* Light Mode Styles */
-.Book_room-booking-container {
   background: linear-gradient(135deg, #f5f7fa, #e4e7eb);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   color: #333;
@@ -23,9 +20,9 @@
 
 /* Dark Mode Styles */
 [data-theme="dark"] .Book_room-booking-container {
-  background: linear-gradient(135deg, #1e272e, #2f3640);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  color: #e0e0e0;
+  background: linear-gradient(135deg, #1a1f26, #2c343f); /* Darker, richer gradient */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+  color: #d1d8e0; /* Softer off-white for text */
 }
 
 h2 {
@@ -36,7 +33,7 @@ h2 {
 }
 
 [data-theme="dark"] h2 {
-  color: #dfe6e9;
+  color: #e8ecef; /* Brighter yet soft heading color */
 }
 
 .Book_room-booking-container section {
@@ -47,7 +44,7 @@ h2 {
 }
 
 [data-theme="dark"] section {
-  background: rgba(44, 62, 80, 0.9);
+  background: rgba(34, 43, 54, 0.95); /* Slightly more opaque, darker background */
 }
 
 h3 {
@@ -57,7 +54,7 @@ h3 {
 }
 
 [data-theme="dark"] h3 {
-  color: #74b9ff;
+  color: #66aaff; /* Slightly more vibrant blue for headings */
 }
 
 /* Form Row and Group */
@@ -84,7 +81,6 @@ h3 {
 /* Updated Labels and Inputs */
 label {
   display: block;
-  /* margin-bottom: 8px;  */
   font-weight: 600; /* Bolder labels */
   font-size: 1.1rem; /* Slightly larger labels */
   color: #34495e;
@@ -104,13 +100,13 @@ label[for="identityNumber"]::after {
 }
 
 [data-theme="dark"] label {
-  color: #b2bec3;
+  color: #c0c7d1; /* Lighter gray for better readability */
 }
 
 [data-theme="dark"] label[for="firstName"]::after,
 [data-theme="dark"] label[for="lastName"]::after,
 [data-theme="dark"] label[for="identityNumber"]::after {
-  color: #ff7675;
+  color: #ff8787; /* Softer red for required fields */
 }
 
 input,
@@ -135,15 +131,15 @@ select:invalid {
 
 [data-theme="dark"] input::placeholder,
 [data-theme="dark"] select:invalid {
-  color: #b2bec3;
+  color: #8899a6; /* Muted placeholder color */
 }
 
 [data-theme="dark"] input,
 [data-theme="dark"] select {
-  border: 1px solid #576574;
-  background: #2d3436;
-  color: #e0e0e0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #495566; /* Subtle border color */
+  background: #252c35; /* Darker input background */
+  color: #e0e6ed; /* Light text for contrast */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Deeper shadow */
 }
 
 input:focus,
@@ -156,9 +152,9 @@ select:focus {
 
 [data-theme="dark"] input:focus,
 [data-theme="dark"] select:focus {
-  border-color: #74b9ff;
-  box-shadow: 0 0 8px rgba(116, 185, 255, 0.3);
-  background: #3b4144;
+  border-color: #66aaff; /* Vibrant focus border */
+  box-shadow: 0 0 10px rgba(102, 170, 255, 0.4); /* Stronger glow */
+  background: #2e3642; /* Slightly lighter on focus */
 }
 
 /* Style for select dropdown arrow */
@@ -171,7 +167,7 @@ select {
 }
 
 [data-theme="dark"] select {
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23d1d8e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Lighter arrow */
 }
 
 /* Counter Styles */
@@ -198,11 +194,11 @@ select {
 }
 
 [data-theme="dark"] .Book_counter-button {
-  background: #0984e3;
+  background: #0778d4; /* Richer blue for buttons */
 }
 
 [data-theme="dark"] .Book_counter-button:disabled {
-  background: #636e72;
+  background: #4b5563; /* Darker disabled state */
 }
 
 .Book_counter-button:hover:not(:disabled) {
@@ -210,7 +206,7 @@ select {
 }
 
 [data-theme="dark"] .Book_counter-button:hover:not(:disabled) {
-  background: #74b9ff;
+  background: #5599ff; /* Brighter hover state */
 }
 
 .Book_counter input {
@@ -228,7 +224,7 @@ select {
 }
 
 [data-theme="dark"] .Book_service-category {
-  background: rgba(45, 52, 54, 0.5);
+  background: rgba(30, 37, 46, 0.6); /* Darker, semi-transparent background */
 }
 
 .Book_service-category h4 {
@@ -241,8 +237,8 @@ select {
 }
 
 [data-theme="dark"] .Book_service-category h4 {
-  color: #fdcb6e;
-  border-bottom: 2px solid #fdcb6e;
+  color: #ffb366; /* Warmer orange for contrast */
+  border-bottom: 2px solid #ffb366;
 }
 
 .Book_service-item {
@@ -257,17 +253,8 @@ select {
 }
 
 [data-theme="dark"] .Book_service-item {
-  background: rgba(99, 110, 114, 0.3);
+  background: rgba(60, 72, 88, 0.4); /* Slightly lighter service item */
 }
-
-/* .Book_service-item:hover {
-  background: rgba(200, 200, 200, 0.5);
-  transform: translateX(5px);
-}
-
-[data-theme="dark"] .Book_service-item:hover {
-  background: rgba(178, 190, 195, 0.3);
-} */
 
 .Book_service-item input[type="checkbox"] {
   margin-right: 15px;
@@ -278,7 +265,7 @@ select {
 }
 
 [data-theme="dark"] .Book_service-item input[type="checkbox"] {
-  accent-color: #74b9ff;
+  accent-color: #66aaff; /* Matching checkbox color */
 }
 
 .Book_service-item label {
@@ -289,7 +276,7 @@ select {
 }
 
 [data-theme="dark"] .Book_service-item label {
-  color: #dfe6e9;
+  color: #e0e6ed; /* Brighter text */
 }
 
 .Book_service-item span {
@@ -299,7 +286,7 @@ select {
 }
 
 [data-theme="dark"] .Book_service-item span {
-  color: #ff7675;
+  color: #ff9999; /* Softer red for price */
 }
 
 /* Amount Details */
@@ -311,8 +298,8 @@ select {
 }
 
 [data-theme="dark"] .Book_amount-details {
-  border: 1px solid #576574;
-  background: rgba(45, 52, 54, 0.8);
+  border: 1px solid #4b5563; /* Subtle border */
+  background: rgba(30, 37, 46, 0.85); /* Darker background */
 }
 
 .Book_amount-details p {
@@ -326,7 +313,7 @@ select {
 }
 
 [data-theme="dark"] .Book_amount-details hr {
-  border-top: 1px solid #576574;
+  border-top: 1px solid #4b5563; /* Matching divider */
 }
 
 /* Buttons */
@@ -359,15 +346,15 @@ select {
 }
 
 [data-theme="dark"] .Book_submit-button {
-  background: #27ae60;
+  background: #1f9e55; /* Richer green */
 }
 
 [data-theme="dark"] .Book_cancel-button {
-  background: #c0392b;
+  background: #b33023; /* Deeper red */
 }
 
 [data-theme="dark"] .Book_payment-button {
-  background: #f39c12;
+  background: #e68a00; /* Vibrant orange */
   color: #fff;
 }
 
@@ -385,20 +372,16 @@ select {
   background: #c0392b;
 }
 
-/* .Book_payment-button:hover {
-  background: #e1b50e;
-} */
-
 [data-theme="dark"] .Book_submit-button:hover {
-  background: #219653;
+  background: #1a8c49; /* Darker hover */
 }
 
 [data-theme="dark"] .Book_cancel-button:hover {
-  background: #a93226;
+  background: #99291e; /* Darker hover */
 }
 
 [data-theme="dark"] .Book_payment-button:hover {
-  background: #d68910;
+  background: #cc7700; /* Darker hover */
 }
 
 .Book_form-buttons {
@@ -415,8 +398,8 @@ select {
 }
 
 [data-theme="dark"] .Book_cash-info {
-  border: 1px solid #f39c12;
-  background: rgba(243, 156, 18, 0.1);
+  border: 1px solid #e68a00; /* Matching orange */
+  background: rgba(230, 138, 0, 0.15); /* Subtle orange tint */
 }
 
 .Book_cash-info h4 {
@@ -424,7 +407,7 @@ select {
 }
 
 [data-theme="dark"] .Book_cash-info h4 {
-  color: #f39c12;
+  color: #ffab33; /* Brighter orange */
 }
 
 /* Responsive Design */
@@ -484,4 +467,3 @@ select {
     font-size: 0.9rem;
   }
 }
-

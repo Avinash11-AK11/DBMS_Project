@@ -490,6 +490,8 @@ const RoomBooking = () => {
   };
 
   const amountDetails = calculateAmountDetails();
+  <div className="Book_room-booking-container" data-theme={isDarkMode ? "dark" : "light"}></div>
+  
 
   return (
     <div className="Book_room-booking-container">

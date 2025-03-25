@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import { useTheme } from "../../context/ThemeContext.jsx";
+// import { useTheme } from "../../context/ThemeContext.jsx";
 import "bootstrap/dist/css/bootstrap.min.css"; 
 import * as bootstrap from "bootstrap"; 
 import "./home.css";
 
 // Import images (adjusted paths based on your structure)
-import home1 from "../../assets/images/img/home-1.jpg"; // First image
-import home2 from "../../assets/images/img/home-2.jpeg"; // Second image
-import home3 from "../../assets/images/img/home-3.webp"; // Third image
+import home1 from "../../assets/images/img/home-1.jpg";    // First image
+import home2 from "../../assets/images/img/home-2.jpeg";   // Second image
+import home3 from "../../assets/images/img/home-3.webp";   // Third image
+import home4 from "../../assets/images/img/home-4.0.webp";    // Fourth image (assuming this exists)
+import home5 from "../../assets/images/img/home-4.webp";    // Fifth image (assuming this exists)
 
 const Home = () => {
-  const { isDarkMode } = useTheme();
+  // const { isDarkMode } = useTheme();
 
   // Manually initialize the carousel to ensure sliding works
   useEffect(() => {
@@ -55,6 +57,18 @@ const Home = () => {
             data-bs-slide-to="2"
             aria-label="Slide 3"
           ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="4"
+            aria-label="Slide 5"
+          ></button>
         </div>
 
         <div className="carousel-inner Home_carousel-inner">
@@ -89,6 +103,28 @@ const Home = () => {
             <div className="carousel-caption Home_carousel-caption">
               <h5>EXPERIENCE LUXURY FOOD LIKE NEVER BEFORE</h5>
               <p>Your perfect holiday with us today!</p>
+            </div>
+          </div>
+          <div className="carousel-item Home_carousel-item">
+            <img
+              src={home4}
+              className="d-block w-100 Home_d-block"
+              alt="Fourth Slide"
+            />
+            <div className="carousel-caption Home_carousel-caption">
+              <h5>UNWIND IN STYLE</h5>
+              <p>Relax with our world-class amenities and services</p>
+            </div>
+          </div>
+          <div className="carousel-item Home_carousel-item">
+            <img
+              src={home5}
+              className="d-block w-100 Home_d-block"
+              alt="Fifth Slide"
+            />
+            <div className="carousel-caption Home_carousel-caption">
+              <h5>DISCOVER PARADISE</h5>
+              <p>Create unforgettable memories at our stunning location</p>
             </div>
           </div>
         </div>

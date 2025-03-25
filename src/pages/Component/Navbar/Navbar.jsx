@@ -1,12 +1,14 @@
 // src/Navbar.jsx
 import React, { useState } from "react";
-import { FaUser, FaTag, FaHistory, FaSignOutAlt, FaBars, FaSun, FaMoon } from "react-icons/fa";
+import { FaUser, FaTag, FaHistory, FaSignOutAlt, FaBars, FaSun, FaMoon, FaEdit } from "react-icons/fa";
 import { useTheme } from "../../../context/ThemeContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [username, setUsername] = useState("johndoe123"); // Initial username state
+  const [isEditingUsername, setIsEditingUsername] = useState(false); // Toggle editing mode
   const { isDarkMode, toggleDarkMode } = useTheme(); // Use theme context
 
   const toggleProfileMenu = () => {
@@ -15,6 +17,27 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
+  };
+
+  const handleRenameClick = (e) => {
+    e.preventDefault(); // Prevent navigation
+    setIsEditingUsername(true); // Enter editing mode
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value); // Update username as user types
+  };
+
+  const handleUsernameSubmit = (e) => {
+    if (e.key === "Enter" || e.type === "blur") { // Save on Enter key or when input loses focus
+      setIsEditingUsername(false); // Exit editing mode
+      // Here you could add API call to save the new username if needed
+    }
+  };
+
+  const handleUpdateClick = () => {
+    setIsEditingUsername(false); // Exit editing mode on update button click
+    // Here you could add API call to save the new username if needed
   };
 
   return (
@@ -86,7 +109,33 @@ const Navbar = () => {
                     <FaUser /> Name: John Doe
                   </div>
                   <div className="profile-item">
-                    <FaTag /> Username: johndoe123
+                    <FaTag /> 
+                    {isEditingUsername ? (
+                      <div className="username-edit-container">
+                        <input
+                          type="text"
+                          value={username}
+                          onChange={handleUsernameChange}
+                          onKeyPress={handleUsernameSubmit}
+                          onBlur={handleUsernameSubmit}
+                          className="username-input"
+                          autoFocus
+                        />
+                        <button
+                          className="update-btn"
+                          onClick={handleUpdateClick}
+                        >
+                          Update
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        Username: {username}
+                        <a href="#" className="profile-link ms-2" onClick={handleRenameClick}>
+                          <FaEdit />
+                        </a>
+                      </>
+                    )}
                   </div>
                   <a href="/history" className="profile-item profile-link">
                     <FaHistory /> History

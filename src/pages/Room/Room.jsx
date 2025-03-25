@@ -129,11 +129,11 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="filters">
+    <nav className="Room_navbar">
+      <div className="Room_navbar-container">
+        <div className="Room_filters">
           <select
-            className="filter-select"
+            className="Room_filter-select"
             value={roomType}
             onChange={(e) => setRoomType(e.target.value)}
           >
@@ -144,7 +144,7 @@ const Navbar = ({ onSearch }) => {
           </select>
 
           <select
-            className="filter-select"
+            className="Room_filter-select"
             value={priceRange}
             onChange={(e) => setPriceRange(e.target.value)}
           >
@@ -155,7 +155,7 @@ const Navbar = ({ onSearch }) => {
           </select>
 
           <select
-            className="filter-select"
+            className="Room_filter-select"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           >
@@ -167,7 +167,7 @@ const Navbar = ({ onSearch }) => {
             ))}
           </select>
 
-          <button className="search-button" onClick={handleSearch}>
+          <button className="Room_search-button" onClick={handleSearch}>
             Search
           </button>
         </div>
@@ -205,14 +205,18 @@ const RoomsPage = () => {
   };
 
   return (
-    <div className="rooms-page">
-      <Navbar onSearch={handleSearch} />
-      <div className="rooms-container">
-        <h2 className="page-title">Discover Your Perfect Stay</h2>
-        <div className="rooms-grid">
-          {filteredRooms.map((room, index) => (
-            <RoomCard key={index} room={room} />
-          ))}
+    <div className="rooms-page-wrapper">
+      <div className="Room_rooms-page">
+        <Navbar onSearch={handleSearch} />
+        <div className="Room_rooms-container">
+          <h2 className="Room_page-title">Discover Your Perfect Stay</h2>
+          <div className="Room_rooms-grid">
+            {filteredRooms.map((room, index) => (
+              <div className="room-container" key={index}>
+                <RoomCard room={room} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
