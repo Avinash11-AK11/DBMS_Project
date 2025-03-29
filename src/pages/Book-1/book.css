@@ -19,8 +19,8 @@
 }
 
 /* Dark Mode Styles */
-[data-theme="dark"] .Book_room-booking-container {
-  background: linear-gradient(135deg, #1a1f26, #2c343f); /* Darker, richer gradient */
+body.dark-mode .Book_room-booking-container {
+  background: #2D2D2D;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
   color: #d1d8e0; /* Softer off-white for text */
 }
@@ -32,7 +32,7 @@ h2 {
   color: #2c3e50;
 }
 
-[data-theme="dark"] h2 {
+body.dark-mode h2 {
   color: #e8ecef; /* Brighter yet soft heading color */
 }
 
@@ -43,8 +43,9 @@ h2 {
   background: rgba(255, 255, 255, 0.9);
 }
 
-[data-theme="dark"] section {
-  background: rgba(34, 43, 54, 0.95); /* Slightly more opaque, darker background */
+body.dark-mode .Book_room-booking-container section {
+  background: #343A40;
+  box-shadow: 0 3px 6px rgba(255, 255, 255, 0.1);
 }
 
 h3 {
@@ -53,7 +54,7 @@ h3 {
   color: #2980b9;
 }
 
-[data-theme="dark"] h3 {
+body.dark-mode h3 {
   color: #66aaff; /* Slightly more vibrant blue for headings */
 }
 
@@ -99,13 +100,13 @@ label[for="identityNumber"]::after {
   right: -10px;
 }
 
-[data-theme="dark"] label {
+body.dark-mode label {
   color: #c0c7d1; /* Lighter gray for better readability */
 }
 
-[data-theme="dark"] label[for="firstName"]::after,
-[data-theme="dark"] label[for="lastName"]::after,
-[data-theme="dark"] label[for="identityNumber"]::after {
+body.dark-mode label[for="firstName"]::after,
+body.dark-mode label[for="lastName"]::after,
+body.dark-mode label[for="identityNumber"]::after {
   color: #ff8787; /* Softer red for required fields */
 }
 
@@ -129,15 +130,15 @@ select:invalid {
   font-style: italic;
 }
 
-[data-theme="dark"] input::placeholder,
-[data-theme="dark"] select:invalid {
-  color: #8899a6; /* Muted placeholder color */
+body.dark-mode input::placeholder,
+body.dark-mode select:invalid {
+  color: #8899a6; 
 }
 
-[data-theme="dark"] input,
-[data-theme="dark"] select {
+body.dark-mode input,
+body.dark-mode select {
   border: 1px solid #495566; /* Subtle border color */
-  background: #252c35; /* Darker input background */
+  background: #252c35; 
   color: #e0e6ed; /* Light text for contrast */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Deeper shadow */
 }
@@ -150,8 +151,8 @@ select:focus {
   background: #f8f9fa; /* Slight background change on focus */
 }
 
-[data-theme="dark"] input:focus,
-[data-theme="dark"] select:focus {
+body.dark-mode input:focus,
+body.dark-mode select:focus {
   border-color: #66aaff; /* Vibrant focus border */
   box-shadow: 0 0 10px rgba(102, 170, 255, 0.4); /* Stronger glow */
   background: #2e3642; /* Slightly lighter on focus */
@@ -166,9 +167,9 @@ select {
   background-size: 16px;
 }
 
-[data-theme="dark"] select {
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23d1d8e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Lighter arrow */
-}
+/* body.dark-mode select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23d1d8e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+} */
 
 /* Counter Styles */
 .Book_counter {
@@ -193,11 +194,11 @@ select {
   cursor: not-allowed;
 }
 
-[data-theme="dark"] .Book_counter-button {
+body.dark-mode .Book_counter-button {
   background: #0778d4; /* Richer blue for buttons */
 }
 
-[data-theme="dark"] .Book_counter-button:disabled {
+body.dark-mode .Book_counter-button:disabled {
   background: #4b5563; /* Darker disabled state */
 }
 
@@ -205,7 +206,7 @@ select {
   background: #2980b9;
 }
 
-[data-theme="dark"] .Book_counter-button:hover:not(:disabled) {
+body.dark-mode .Book_counter-button:hover:not(:disabled) {
   background: #5599ff; /* Brighter hover state */
 }
 
@@ -223,7 +224,7 @@ select {
   transition: background 0.3s ease;
 }
 
-[data-theme="dark"] .Book_service-category {
+body.dark-mode .Book_service-category {
   background: rgba(30, 37, 46, 0.6); /* Darker, semi-transparent background */
 }
 
@@ -236,7 +237,7 @@ select {
   padding-bottom: 5px;
 }
 
-[data-theme="dark"] .Book_service-category h4 {
+body.dark-mode .Book_service-category h4 {
   color: #ffb366; /* Warmer orange for contrast */
   border-bottom: 2px solid #ffb366;
 }
@@ -252,7 +253,7 @@ select {
   transition: background 0.3s ease, transform 0.2s ease;
 }
 
-[data-theme="dark"] .Book_service-item {
+body.dark-mode .Book_service-item {
   background: rgba(60, 72, 88, 0.4); /* Slightly lighter service item */
 }
 
@@ -264,7 +265,7 @@ select {
   cursor: pointer;
 }
 
-[data-theme="dark"] .Book_service-item input[type="checkbox"] {
+body.dark-mode .Book_service-item input[type="checkbox"] {
   accent-color: #66aaff; /* Matching checkbox color */
 }
 
@@ -275,7 +276,7 @@ select {
   color: #2d3436;
 }
 
-[data-theme="dark"] .Book_service-item label {
+body.dark-mode .Book_service-item label {
   color: #e0e6ed; /* Brighter text */
 }
 
@@ -285,7 +286,7 @@ select {
   color: #e74c3c;
 }
 
-[data-theme="dark"] .Book_service-item span {
+body.dark-mode .Book_service-item span {
   color: #ff9999; /* Softer red for price */
 }
 
@@ -297,7 +298,7 @@ select {
   background: rgba(245, 245, 245, 0.8);
 }
 
-[data-theme="dark"] .Book_amount-details {
+body.dark-mode .Book_amount-details {
   border: 1px solid #4b5563; /* Subtle border */
   background: rgba(30, 37, 46, 0.85); /* Darker background */
 }
@@ -312,7 +313,7 @@ select {
   border-top: 1px solid #ccc;
 }
 
-[data-theme="dark"] .Book_amount-details hr {
+body.dark-mode .Book_amount-details hr {
   border-top: 1px solid #4b5563; /* Matching divider */
 }
 
@@ -345,16 +346,16 @@ select {
   width: 100%;
 }
 
-[data-theme="dark"] .Book_submit-button {
+body.dark-mode .Book_submit-button {
   background: #1f9e55; /* Richer green */
 }
 
-[data-theme="dark"] .Book_cancel-button {
+body.dark-mode .Book_cancel-button {
   background: #b33023; /* Deeper red */
 }
 
-[data-theme="dark"] .Book_payment-button {
-  background: #e68a00; /* Vibrant orange */
+body.dark-mode .Book_payment-button {
+  background: #1F9E55; 
   color: #fff;
 }
 
@@ -372,16 +373,16 @@ select {
   background: #c0392b;
 }
 
-[data-theme="dark"] .Book_submit-button:hover {
+body.dark-mode .Book_submit-button:hover {
   background: #1a8c49; /* Darker hover */
 }
 
-[data-theme="dark"] .Book_cancel-button:hover {
+body.dark-mode .Book_cancel-button:hover {
   background: #99291e; /* Darker hover */
 }
 
-[data-theme="dark"] .Book_payment-button:hover {
-  background: #cc7700; /* Darker hover */
+body.dark-mode .Book_payment-button:hover {
+  background: #1a8c49; 
 }
 
 .Book_form-buttons {
@@ -397,7 +398,7 @@ select {
   background: rgba(241, 196, 15, 0.1);
 }
 
-[data-theme="dark"] .Book_cash-info {
+body.dark-mode .Book_cash-info {
   border: 1px solid #e68a00; /* Matching orange */
   background: rgba(230, 138, 0, 0.15); /* Subtle orange tint */
 }
@@ -406,7 +407,7 @@ select {
   color: #f1c40f;
 }
 
-[data-theme="dark"] .Book_cash-info h4 {
+body.dark-mode .Book_cash-info h4 {
   color: #ffab33; /* Brighter orange */
 }
 

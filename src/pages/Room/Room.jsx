@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import bedroomImage from "../../assets/Room/bed-room.jpg";
 import { useTheme } from "../../context/ThemeContext.jsx";
 import "./Room.css";
@@ -104,6 +105,11 @@ const roomsData = [
 
 const RoomCard = ({ room }) => {
   const { isDarkMode } = useTheme();
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate('/book-room', { state: { room } });
+  };
 
   return (
     <div className="room-card">
@@ -113,7 +119,7 @@ const RoomCard = ({ room }) => {
         <h3 className="room-name">{room.name}</h3>
         <p className="room-description">{room.description}</p>
         <p className="room-price">{room.price}</p>
-        <button className="room-book-button">Book Now</button>
+        <button className="room-book-button" onClick={handleBookNow}>Book Now</button>
       </div>
     </div>
   );

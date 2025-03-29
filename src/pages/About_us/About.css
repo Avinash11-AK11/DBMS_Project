@@ -1,6 +1,3 @@
-/* About.css */
-
-/* Base Styles */
 .About_us_about-container {
     max-width: 100%;
     margin: 0 auto;
@@ -10,35 +7,39 @@
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+    height: auto;
 }
 
-/* Light Mode (Default) */
-.About_us_about-container:not(.dark-mode) {
-    /* background: #ffffff;  */
-    box-shadow: 0 8px 25px rgba(160, 160, 160, 0.175); 
+.dark-mode .About_us_about-container {
+    box-shadow: 0 8px 25px rgba(160, 160, 160, 0.3);
     color: #1e293b;
+    background: #2d2d2d;
 }
 
 .About_us_about-container header {
     text-align: center;
     margin-bottom: 50px;
     padding: 25px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.9));
+    background: linear-gradient(90deg, #f8fafc, #e2e8f0);
     border-radius: 12px;
     position: relative;
     z-index: 1;
+    height: 150px;
+    box-sizing: border-box;
 }
 
 .About_us_about-container header h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 15px;
     color: #0f172a;
     letter-spacing: 1px;
     font-weight: 700;
-    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    background: linear-gradient(to right, #2563eb, #60a5fa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.2;
 }
 
 .About_us_about-container header p {
@@ -47,6 +48,7 @@
     font-style: normal;
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
 .About_us_about-content h2 {
@@ -54,9 +56,10 @@
     color: #0f172a;
     margin: 40px 0 20px;
     padding-left: 15px;
-    /* border-left: 4px solid #3b82f6; */
     font-weight: 600;
     transition: color 0.3s ease;
+    height: 40px;
+    line-height: 40px;
 }
 
 .About_us_about-content p {
@@ -64,9 +67,12 @@
     line-height: 1.8;
     margin-bottom: 25px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.85);
+    background: #f1f5f9;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    height: auto;
+    min-height: 100px;
+    box-sizing: border-box;
 }
 
 .About_us_about-content ul {
@@ -79,17 +85,20 @@
     margin-bottom: 18px;
     font-size: 1.15rem;
     padding: 15px 20px 15px 50px;
-    background: rgba(255, 255, 255, 0.9);
+    background: #f8fafc;
     border-radius: 8px;
     position: relative;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    color: #1e293b; /* Fixed text color for light mode */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #1e293b;
+    height: 60px;
+    line-height: 30px;
+    box-sizing: border-box;
 }
 
 .About_us_about-content ul li:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .About_us_about-content ul li::before {
@@ -103,12 +112,13 @@
 }
 
 .About_us_about-content a {
-    color: #3b82f6;
+    color: #2563eb;
     text-decoration: none;
     font-weight: 500;
-    padding: 3px 8px;
+    padding: 4px 10px;
     border-radius: 6px;
     transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .About_us_about-content a:hover {
@@ -116,83 +126,91 @@
     color: #1d4ed8;
 }
 
-/* Dark Mode */
 .About_us_about-container.dark-mode {
-    background: #1f1f1f; /* Plain dark background */
-    color: #ffffff; /* White text */
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); /* Whitish shadow for dark mode */
+    background: #2d2d2d;
+    color: #d0d0e0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
 
-.dark-mode header {
-    background: #2a2a2a37;
-    padding: 20px;
-    border-radius: 0;
+.dark-mode .About_us_about-container header {
+    background: #343A40;
+    padding: 25px;
+    border-radius: 12px;
+    height: 150px;
+    box-sizing: border-box;
 }
 
-.dark-mode header h1 {
+.dark-mode .About_us_about-container header h1 {
     font-size: 2.5rem;
-    color: #ffffff;
-    background: none;
-    -webkit-text-fill-color: #ffffff;
+    color: #e5e7eb;
+    background: linear-gradient(to right, #93c5fd, #dbeafe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     letter-spacing: 0;
     font-weight: 600;
+    line-height: 1.2;
 }
 
 .dark-mode header p {
-    font-size: 1.2rem;
-    color: #ffffff;
+    font-size: 1.25rem;
+    color: #b0b0d1;
+    line-height: 1.5;
 }
 
 .dark-mode .About_us_about-content h2 {
-    font-size: 1.8rem;
-    color: #ffffff;
+    font-size: 2rem;
+    color: #e5e7eb;
     border-left: none;
-    padding-left: 0;
-    margin: 30px 0 15px;
+    padding-left: 15px;
+    margin: 40px 0 20px;
+    height: 40px;
+    line-height: 40px;
 }
 
 .dark-mode .About_us_about-content p {
-    font-size: 1.1rem;
-    background: none;
-    padding: 10px 0;
-    box-shadow: none;
-    color: #ffffff;
+    font-size: 1.15rem;
+    background: #343A40;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #d0d0e0;
+    min-height: 100px;
+    box-sizing: border-box;
 }
 
 .dark-mode .About_us_about-content ul li {
-    font-size: 1.1rem;
-    background: none;
-    padding: 10px 10px 10px 30px;
-    border-radius: 0;
-    box-shadow: none;
-    transition: none;
-    color: #ffffff; /* Ensure text is white in dark mode */
+    font-size: 1.15rem;
+    background: #343A40;
+    padding: 15px 20px 15px 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #d0d0e0;
+    height: 60px;
+    line-height: 30px;
+    box-sizing: border-box;
 }
 
 .dark-mode .About_us_about-content ul li:hover {
-    transform: none;
-    box-shadow: none;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .dark-mode .About_us_about-content ul li::before {
-    content: '•';
-    color: #ffffff;
-    font-size: 1rem;
-    left: 10px;
+    content: '➤';
+    color: #93c5fd;
+    font-size: 1.3rem;
+    left: 20px;
 }
 
 .dark-mode .About_us_about-content a {
-    color: #ffffff;
-    padding: 0;
+    color: #93c5fd;
+    padding: 4px 10px;
 }
 
 .dark-mode .About_us_about-content a:hover {
-    background: none;
-    color: #cccccc;
-    text-decoration: underline;
+    background: #404756;
+    color: #dbeafe;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .About_us_about-container {
         padding: 25px;

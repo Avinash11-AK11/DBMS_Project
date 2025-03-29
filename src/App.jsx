@@ -10,6 +10,7 @@ import Room from './pages/Room/Room.jsx';
 import Contact from './pages/contact_us/contact.jsx';
 // import Help from './pages/Help/help.jsx';
 import Book from './pages/Book-1/book.jsx';
+import RoomBook from './pages/Book/Book.jsx';
 import Info from './hotel_info/information/info.jsx';
 import Rules from './hotel_info/rules/rules.jsx';
 import Freewifi from './Services/Free-wifi/Free_wifi.jsx';
@@ -40,6 +41,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         {/* <Route path="/help" element={<Help />} /> */}
         <Route path="/book1" element={<Book />} />
+        <Route path="/book-room" element={<RoomBook />} />
         <Route path="/info" element={<Info />} />
         <Route path="/rules" element={<Rules />} />
         <Route path="/free-wifi" element={<Freewifi />} />
