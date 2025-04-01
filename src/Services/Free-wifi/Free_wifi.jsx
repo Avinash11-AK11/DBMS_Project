@@ -43,13 +43,13 @@ const WifiAccessPage = () => {
             {/* Wi-Fi Access Section */}
             <div className="wifi-container">
                 <header>
-                    <h1>📶 Free High-Speed Wi-Fi Access</h1>
+                    <h1>Free High-Speed Wi-Fi Access</h1>
                     <p>Enter your room ID to access the Wi-Fi network.</p>
                 </header>
 
                 <section className="wifi-form">
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="room-id">🏨 Room ID:</label>
+                        <label htmlFor="room-id">Room ID:</label>
                         <input
                             type="text"
                             id="room-id"
@@ -67,7 +67,7 @@ const WifiAccessPage = () => {
                     {/* Display Wi-Fi details if available */}
                     {wifiDetails && (
                         <div className="wifi-details">
-                            <h2>✅ Wi-Fi Network Details</h2>
+                            <h2>Wi-Fi Network Details</h2>
                             <p><strong>Network Name:</strong> {wifiDetails.name}</p>
                             <p><strong>Password:</strong> {wifiDetails.password}</p>
                         </div>
@@ -75,7 +75,7 @@ const WifiAccessPage = () => {
 
                     {/* Display error message if there’s an error */}
                     {error && (
-                        <div className="error-message">❌ {error}</div>
+                        <div className="error-message">{error}</div>
                     )}
                 </section>
             </div>

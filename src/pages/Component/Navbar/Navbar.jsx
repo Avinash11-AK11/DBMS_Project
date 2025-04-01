@@ -1,15 +1,16 @@
 // src/Navbar.jsx
 import React, { useState } from "react";
-import { FaUser, FaTag, FaHistory, FaSignOutAlt, FaBars, FaSun, FaMoon, FaEdit } from "react-icons/fa";
+import { FaUser, FaTag, FaHistory, FaSignOutAlt, FaBars, FaSun, FaMoon, FaEdit, FaSignInAlt } from "react-icons/fa";
 import { useTheme } from "../../../context/ThemeContext";
 import "./Navbar.css";
 
 const Navbar = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [username, setUsername] = useState("johndoe123"); // Initial username state
-  const [isEditingUsername, setIsEditingUsername] = useState(false); // Toggle editing mode
-  const { isDarkMode, toggleDarkMode } = useTheme(); // Use theme context
+  const [username, setUsername] = useState(""); // Empty initial username
+  const [isEditingUsername, setIsEditingUsername] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // New state for login status
+  const { isDarkMode, toggleDarkMode } = useTheme();
 
   const toggleProfileMenu = () => {
     setShowProfileMenu(!showProfileMenu);
@@ -38,6 +39,19 @@ const Navbar = () => {
   const handleUpdateClick = () => {
     setIsEditingUsername(false); // Exit editing mode on update button click
     // Here you could add API call to save the new username if needed
+  };
+
+  const handleSignIn = () => {
+    // Here you would typically handle the sign-in logic
+    // For now, we'll just set isLoggedIn to true
+    setIsLoggedIn(true);
+    setUsername("johndoe123"); // Set a default username after login
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername("");
+    setShowProfileMenu(false);
   };
 
   return (
@@ -81,10 +95,10 @@ const Navbar = () => {
 
           <div className="navbar-nav ms-auto left-link d-flex align-items-center">
             <a href="/book1" className="nav-link book" id="bk">
-              📅 Book Now
+              Book Now
             </a>
             <a href="/cancel-booking" className="nav-link cancel" id="cncl">
-              ❌ Cancel Booking
+              Cancel Booking
             </a>
             {/* Dark/Light Mode Toggle Button */}
             <button 
@@ -95,57 +109,67 @@ const Navbar = () => {
             >
               {isDarkMode ? <FaSun /> : <FaMoon />}
             </button>
-            {/* Profile Section */}
-            <div className="profile-container">
-              <img
-                src="/src/assets/images/logo/logo.webp" // Adjusted path for Vite
-                alt="user-profile"
-                className="profile-logo"
-                onClick={toggleProfileMenu}
-              />
-              {showProfileMenu && (
-                <div className="profile-dropdown">
-                  <div className="profile-item">
-                    <FaUser /> Name: John Doe
+            
+            {/* Conditional rendering based on login status */}
+            {isLoggedIn ? (
+              <div className="profile-container">
+                <img
+                  src="/src/assets/images/logo/logo.webp"
+                  alt="user-profile"
+                  className="profile-logo"
+                  onClick={toggleProfileMenu}
+                />
+                {showProfileMenu && (
+                  <div className="profile-dropdown">
+                    <div className="profile-item">
+                      <FaUser /> Name: John Doe
+                    </div>
+                    <div className="profile-item">
+                      <FaTag /> 
+                      {isEditingUsername ? (
+                        <div className="username-edit-container">
+                          <input
+                            type="text"
+                            value={username}
+                            onChange={handleUsernameChange}
+                            onKeyPress={handleUsernameSubmit}
+                            onBlur={handleUsernameSubmit}
+                            className="username-input"
+                            autoFocus
+                          />
+                          <button
+                            className="update-btn"
+                            onClick={handleUpdateClick}
+                          >
+                            Update
+                          </button>
+                        </div>
+                      ) : (
+                        <>
+                          Username: {username}
+                          <a href="#" className="profile-link ms-2" onClick={handleRenameClick}>
+                            <FaEdit />
+                          </a>
+                        </>
+                      )}
+                    </div>
+                    <a href="/history" className="profile-item profile-link">
+                      <FaHistory /> History
+                    </a>
+                    <a href="#" className="profile-item profile-link logout" onClick={handleLogout}>
+                      <FaSignOutAlt /> Logout
+                    </a>
                   </div>
-                  <div className="profile-item">
-                    <FaTag /> 
-                    {isEditingUsername ? (
-                      <div className="username-edit-container">
-                        <input
-                          type="text"
-                          value={username}
-                          onChange={handleUsernameChange}
-                          onKeyPress={handleUsernameSubmit}
-                          onBlur={handleUsernameSubmit}
-                          className="username-input"
-                          autoFocus
-                        />
-                        <button
-                          className="update-btn"
-                          onClick={handleUpdateClick}
-                        >
-                          Update
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        Username: {username}
-                        <a href="#" className="profile-link ms-2" onClick={handleRenameClick}>
-                          <FaEdit />
-                        </a>
-                      </>
-                    )}
-                  </div>
-                  <a href="/history" className="profile-item profile-link">
-                    <FaHistory /> History
-                  </a>
-                  <a href="#" className="profile-item profile-link logout">
-                    <FaSignOutAlt /> Logout
-                  </a>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            ) : (
+              <button 
+                className="nav-link btn btn-outline-primary"
+                onClick={handleSignIn}
+              >
+                <FaSignInAlt /> Sign In
+              </button>
+            )}
           </div>
         </div>
       </nav>

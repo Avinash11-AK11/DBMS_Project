@@ -183,7 +183,7 @@ const Home = () => {
 
       {/* Services Section */}
       <div className="Home_services-section">
-        <h2>🌟 Our Premium Services</h2>
+        <h2>Our Premium Services</h2>
         <p>
           We offer top-notch facilities to make your stay comfortable and
           memorable.
